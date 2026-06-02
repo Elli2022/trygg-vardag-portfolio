@@ -109,6 +109,14 @@ Connect the GitHub repository to Netlify (branch: `portfolio`) or deploy manuall
 | `portfolio` | Current marketing site (v2.x) |
 | `main` | Historical customer-project lineage |
 
+## For reviewers / interviews
+
+1. **Product focus:** Content structure and trust signals for a sensitive service (seniors, accessibility, clear CTAs).
+2. **SEO:** Structured data, sitemap, canonical URLs, and OG assets—not just meta tags in one file.
+3. **Tradeoff:** Static/SSG marketing site vs. CMS—chose speed, cost, and simplicity for a concept brand.
+4. **Forms:** Client-side Web3Forms with env-based keys; production checklist documented above.
+5. **AI usage:** Layout/copy iteration assisted by AI; architecture, a11y choices, and deploy setup reviewed manually.
+
 ## License
 
 Private portfolio / concept project. All rights reserved unless otherwise stated by the repository owner.
