@@ -1,18 +1,51 @@
-# Trygg Vardag Skåne — marketing website
+# Trygg Vardag Skåne — Senior Companionship Marketing Website
 
-Modern, accessible landing page for **Trygg Vardag Skåne**, a Swedish concept offering senior companionship, escort support, and everyday activities in Skåne. Built with Next.js, Tailwind CSS, structured SEO, and a Web3Forms-powered contact flow deployed on Netlify.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/57123fe3-1ac5-424b-afb0-46653e26c8b0/deploy-status)](https://app.netlify.com/projects/trygg-vardag-skane/deploys)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-Portfolio-lightgrey)](#license)
 
-## Live demo
+Production-ready marketing site for a **Swedish senior companionship & escort service** concept in Skåne. Built as an anonymized portfolio case study from a real commission: the original client brand and hosting were replaced with a fictional name and domain to protect business confidentiality.
 
-**https://trygg-vardag-skane.netlify.app**
+**Live demo → [trygg-vardag-skane.netlify.app](https://trygg-vardag-skane.netlify.app)**
+
+---
+
+## Project context
+
+| | |
+| --- | --- |
+| **Type** | Commissioned concept website → anonymized portfolio showcase |
+| **Sector** | Elder care adjacent — companionship, escort support, everyday activities (not clinical home care) |
+| **Audience** | Older adults at home, family members seeking trusted support, referrals in Skåne |
+| **My role** | End-to-end delivery: UX structure, UI implementation, SEO, accessibility, deployment, contact flow |
+
+A founder in the same space approached me to shape a credible web presence while launching her company. This repository reflects the **delivery quality and architecture** of that work, published under the fictional brand **Trygg Vardag Skåne** so the live client identity stays private.
+
+---
+
+## What this project demonstrates
+
+- **Service storytelling** — clear “who it’s for”, offerings, activities, FAQ, and contact without overwhelming copy
+- **Senior-friendly UX** — calm palette, readable typography, large tap targets, mobile navigation, skip link
+- **Technical SEO** — metadata, Open Graph, `sitemap.xml`, `robots.txt`, JSON-LD (`LocalBusiness`, `Service`, `WebSite`)
+- **Production deployment** — Netlify + Next.js runtime, environment-based config, working inquiry form
+- **Maintainable codebase** — typed React components, content in `site-data.ts`, reusable section primitives
+
+---
 
 ## Highlights
 
-- Warm, senior-friendly visual design with responsive layout and mobile navigation
-- Clear service storytelling: who it is for, offerings, activities, FAQ, and contact
-- SEO-ready metadata, Open Graph images, `sitemap.xml`, `robots.txt`, and JSON-LD (`LocalBusiness`, `Service`, `WebSite`)
-- Accessible patterns: skip link, keyboard-friendly navigation, visible focus states, semantic sections
-- Contact form via [Web3Forms](https://web3forms.com) with dedicated thank-you route (`/tack`)
+| Area | Implementation |
+| --- | --- |
+| **Layout** | Sticky header, trust strip, service cards, area pills, FAQ accordions, contact panel |
+| **Accessibility** | Skip link, semantic landmarks, focus-visible styles, reduced-motion support |
+| **Performance** | Static generation, optimized images, minimal client JS on content sections |
+| **Forms** | Web3Forms integration with `/tack` confirmation route |
+| **Brand** | Custom SVG logomark, warm sage/cream palette aligned with care-sector tone |
+
+---
 
 ## Screenshots
 
@@ -28,28 +61,46 @@ Modern, accessible landing page for **Trygg Vardag Skåne**, a Swedish concept o
 | --- |
 | ![Thank-you page](./docs/screenshots/thank-you-desktop.png) |
 
+---
+
 ## Tech stack
 
-- **Next.js 16** (App Router, static generation)
+- **Next.js 16** — App Router, static pages, metadata API
 - **React 19** + **TypeScript**
 - **Tailwind CSS 4**
-- **Netlify** (`@netlify/plugin-nextjs`)
-- **Web3Forms** (contact submissions)
+- **Netlify** — `@netlify/plugin-nextjs`, production deploys from `portfolio` branch
+- **Web3Forms** — contact submissions to owner inbox
 
-## Project structure
+---
+
+## Architecture
 
 ```text
 src/
-  app/           # Routes, metadata, global styles
-  components/    # UI sections (header, forms, FAQ, cards)
-  lib/           # Site config and content data
-brand/           # Logo source assets
-docs/screenshots # README visuals
+  app/              # Routes, global styles, SEO routes (sitemap, robots)
+  components/       # Header, footer, forms, FAQ, section UI
+  lib/
+    site-config.ts  # Brand, URLs, SEO keywords
+    site-data.ts    # Nav, copy, activities, FAQ content
+brand/              # Logo source assets
+docs/screenshots/   # README & case study visuals
+scripts/            # Playwright screenshot tooling
 ```
+
+**Design choices**
+
+1. **Content-driven sections** — marketing copy lives in `site-data.ts` so non-dev updates stay simple.
+2. **Client-side form POST** — Web3Forms avoids a custom backend while keeping Netlify + Next.js compatible.
+3. **Structured data** — local business + service entities support discovery for “companionship / escort Skåne” intent.
+4. **Anonymized deploy** — fictional domain on Netlify; real client uses separate hosting in production.
+
+---
 
 ## Local development
 
 ```bash
+git clone https://github.com/Elli2022/trygg-vardag-skane-website.git
+cd trygg-vardag-skane-website
 git checkout portfolio
 cp .env.example .env.local
 npm install
@@ -65,15 +116,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `NEXT_PUBLIC_SITE_URL` | Recommended | Canonical public URL for SEO metadata |
 | `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` | Required for form | Web3Forms access key |
 
-### Contact form setup (production)
-
-1. Create an access key at [web3forms.com](https://web3forms.com)
-2. In Netlify: **Site configuration → Environment variables**
-3. Add `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`
-4. Trigger a new deploy
-5. Submit the live form and confirm redirect to `/tack` plus inbox delivery
-
-> Netlify Forms is not used here because this Next.js app handles submissions through Web3Forms from the client.
+---
 
 ## Scripts
 
@@ -82,32 +125,48 @@ npm run dev          # local development
 npm run build        # production build
 npm run start        # run production build locally
 npm run lint         # ESLint
-npm run screenshots  # capture README screenshots (requires build + Playwright browsers)
+npm run screenshots  # capture README screenshots (Playwright)
 ```
 
-To install Playwright browsers once:
+---
 
-```bash
-npx playwright install chromium
-npm run build && npm run screenshots
-```
+## Deployment
 
-## Deployment (Netlify)
+Configured in `netlify.toml`:
 
-The site is configured via `netlify.toml`:
+- Build: `npm run build`
+- Runtime: `@netlify/plugin-nextjs`
+- Production URL: `https://trygg-vardag-skane.netlify.app`
 
-- Build command: `npm run build`
-- Next.js runtime: `@netlify/plugin-nextjs`
-- `NEXT_PUBLIC_SITE_URL` is set for production metadata
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Elli2022/trygg-vardag-skane-website)
 
-Connect the GitHub repository to Netlify (branch: `portfolio`) or deploy manually from the Netlify dashboard.
+---
+
+## Releases
+
+| Version | Summary |
+| --- | --- |
+| [**v2.1.0**](https://github.com/Elli2022/trygg-vardag-skane-website/releases/tag/v2.1.0) | UI refresh, FAQ, recruiter-ready docs, form fix |
+| [v2.0.0](https://github.com/Elli2022/trygg-vardag-skane-website/releases/tag/v2.0.0) | Anonymized portfolio brand & SEO foundation |
+
+See [CHANGELOG.md](./CHANGELOG.md) for full history.
+
+---
 
 ## Branching
 
 | Branch | Purpose |
 | --- | --- |
 | `portfolio` | Current marketing site (v2.x) |
-| `main` | Historical customer-project lineage |
+| `main` | Historical lineage from initial client iteration |
+
+---
+
+## Deeper write-up
+
+For recruiters and hiring managers: **[docs/CASE-STUDY.md](./docs/CASE-STUDY.md)** — problem framing, decisions, and outcomes in one page.
+
+---
 
 ## For reviewers / interviews
 
@@ -119,4 +178,4 @@ Connect the GitHub repository to Netlify (branch: `portfolio`) or deploy manuall
 
 ## License
 
-Private portfolio / concept project. All rights reserved unless otherwise stated by the repository owner.
+Portfolio / concept showcase. Client-identifying assets and production hosting are not included. All rights reserved unless otherwise stated by the repository owner.

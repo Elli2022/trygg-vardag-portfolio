@@ -7,13 +7,15 @@ Alla viktiga ändringar i projektet dokumenteras här enligt [Semantic Versionin
 ### Added
 
 - Mobile navigation, trust highlights, service cards, FAQ section, and area pills
-- English industry README with screenshots and `.env.example`
+- English industry README with screenshots, deploy badge, and recruiter case study (`docs/CASE-STUDY.md`)
 - Netlify Next.js plugin configuration and screenshot capture script
+- GitHub release notes for portfolio presentation
 
 ### Changed
 
 - Modernized UI tokens, buttons, cards, form styling, and footer navigation
 - Repository naming alignment toward `trygg-vardag-skane-website`
+- Contact form env var corrected to `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` on Netlify
 
 ## [2.0.0] - 2026-05-25
 
