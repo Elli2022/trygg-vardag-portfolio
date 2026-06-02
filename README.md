@@ -1,54 +1,114 @@
-# Trygg Vardag Skåne – portfolio
+# Trygg Vardag Skåne — marketing website
 
-Konceptlandningssida för sällskap och ledsagning för äldre i Skåne. Next.js 16, SEO, Web3Forms, varm tillgänglig design.
+Modern, accessible landing page for **Trygg Vardag Skåne**, a Swedish concept offering senior companionship, escort support, and everyday activities in Skåne. Built with Next.js, Tailwind CSS, structured SEO, and a Web3Forms-powered contact flow deployed on Netlify.
 
-## Live
+## Live demo
 
-https://trygg-vardag-skane.netlify.app
+**https://trygg-vardag-skane.netlify.app**
 
-## Kontaktformulär (viktigt – 2 min setup)
+## Highlights
 
-**Netlify Forms fungerar inte med Next.js** på det här sättet (POST går till Next, inte Netlify). Därför använder vi **Web3Forms** (gratis, mejl till din inkorg).
+- Warm, senior-friendly visual design with responsive layout and mobile navigation
+- Clear service storytelling: who it is for, offerings, activities, FAQ, and contact
+- SEO-ready metadata, Open Graph images, `sitemap.xml`, `robots.txt`, and JSON-LD (`LocalBusiness`, `Service`, `WebSite`)
+- Accessible patterns: skip link, keyboard-friendly navigation, visible focus states, semantic sections
+- Contact form via [Web3Forms](https://web3forms.com) with dedicated thank-you route (`/tack`)
 
-### Steg 1 – hämta nyckel
+## Screenshots
 
-1. Öppna **https://web3forms.com**
-2. Ange **eleonora.nocentini@gmail.com**
-3. Bekräfta mejlet från Web3Forms
-4. Kopiera din **Access Key**
+| Home (desktop) | Services |
+| --- | --- |
+| ![Home page](./docs/screenshots/home-desktop.png) | ![Services section](./docs/screenshots/services-desktop.png) |
 
-### Steg 2 – lägg in i Netlify
+| Contact | Mobile home |
+| --- | --- |
+| ![Contact section](./docs/screenshots/contact-desktop.png) | ![Mobile home](./docs/screenshots/home-mobile.png) |
 
-1. **https://app.netlify.com/projects/trygg-vardag-skane/configuration/env**
-2. **Add a variable**
-   - Key: `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`
-   - Value: (klistra in access key)
-   - Scopes: alla (Production)
-3. **Save** → gå till **Deploys** → **Trigger deploy** → **Deploy site**
+| Thank-you page |
+| --- |
+| ![Thank-you page](./docs/screenshots/thank-you-desktop.png) |
 
-(Web3Forms gratis kräver **klient**-anrop — inte server. Nyckeln syns i sidans JS, det är normalt för Web3Forms.)
+## Tech stack
 
-### Steg 3 – testa
+- **Next.js 16** (App Router, static generation)
+- **React 19** + **TypeScript**
+- **Tailwind CSS 4**
+- **Netlify** (`@netlify/plugin-nextjs`)
+- **Web3Forms** (contact submissions)
 
-Skicka formuläret på live-sidan → du ska hamna på `/tack` **och** få mejl inom någon minut (kolla skräppost).
+## Project structure
 
----
+```text
+src/
+  app/           # Routes, metadata, global styles
+  components/    # UI sections (header, forms, FAQ, cards)
+  lib/           # Site config and content data
+brand/           # Logo source assets
+docs/screenshots # README visuals
+```
 
-**Fel sida för mejl?**  
-`configuration/notifications` = deploy-meddelanden, **inte** kontaktformulär. Formulärmejl kommer från Web3Forms när nyckeln är satt.
-
-## Versionshantering
-
-| Branch / tag | Innehåll |
-|--------------|----------|
-| `main` | Historik (kundprojekt v1.x) |
-| `portfolio` | Aktuell version (**v2.0.0**) |
-
-## Utveckling
+## Local development
 
 ```bash
 git checkout portfolio
 cp .env.example .env.local
-# Lägg NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY i .env.local
-npm install && npm run dev
+npm install
+npm run dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+### Environment variables
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Recommended | Canonical public URL for SEO metadata |
+| `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` | Required for form | Web3Forms access key |
+
+### Contact form setup (production)
+
+1. Create an access key at [web3forms.com](https://web3forms.com)
+2. In Netlify: **Site configuration → Environment variables**
+3. Add `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`
+4. Trigger a new deploy
+5. Submit the live form and confirm redirect to `/tack` plus inbox delivery
+
+> Netlify Forms is not used here because this Next.js app handles submissions through Web3Forms from the client.
+
+## Scripts
+
+```bash
+npm run dev          # local development
+npm run build        # production build
+npm run start        # run production build locally
+npm run lint         # ESLint
+npm run screenshots  # capture README screenshots (requires build + Playwright browsers)
+```
+
+To install Playwright browsers once:
+
+```bash
+npx playwright install chromium
+npm run build && npm run screenshots
+```
+
+## Deployment (Netlify)
+
+The site is configured via `netlify.toml`:
+
+- Build command: `npm run build`
+- Next.js runtime: `@netlify/plugin-nextjs`
+- `NEXT_PUBLIC_SITE_URL` is set for production metadata
+
+Connect the GitHub repository to Netlify (branch: `portfolio`) or deploy manually from the Netlify dashboard.
+
+## Branching
+
+| Branch | Purpose |
+| --- | --- |
+| `portfolio` | Current marketing site (v2.x) |
+| `main` | Historical customer-project lineage |
+
+## License
+
+Private portfolio / concept project. All rights reserved unless otherwise stated by the repository owner.

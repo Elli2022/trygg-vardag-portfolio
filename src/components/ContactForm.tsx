@@ -5,6 +5,9 @@ import { useRouter } from "next/navigation";
 
 const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
+const fieldClassName =
+  "w-full rounded-xl border border-[var(--border-warm)] bg-white px-4 py-3 text-[var(--foreground)] outline-none transition placeholder:text-[#9aa8a0] focus:border-[var(--accent-green)] focus:ring-2 focus:ring-[var(--accent-green)]/25 disabled:opacity-60";
+
 export function ContactForm() {
   const router = useRouter();
   const [error, setError] = useState(false);
@@ -48,7 +51,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
       <p className="hidden" aria-hidden="true">
         <label>
           Fyll inte i detta fält:{" "}
@@ -57,20 +60,21 @@ export function ContactForm() {
       </p>
 
       <div className="space-y-2">
-        <label className="block text-sm font-medium text-[#3f4a44]" htmlFor="name">
+        <label className="block text-sm font-semibold text-[var(--foreground)]" htmlFor="name">
           Namn
         </label>
         <input
           id="name"
           name="name"
           required
+          autoComplete="name"
           disabled={sending}
-          className="w-full rounded-xl border border-[#d9cfc6] bg-white px-4 py-3 outline-none ring-[#6d8b72] transition focus:ring-2 disabled:opacity-60"
+          className={fieldClassName}
         />
       </div>
 
       <div className="space-y-2">
-        <label className="block text-sm font-medium text-[#3f4a44]" htmlFor="email">
+        <label className="block text-sm font-semibold text-[var(--foreground)]" htmlFor="email">
           E-post
         </label>
         <input
@@ -78,26 +82,28 @@ export function ContactForm() {
           type="email"
           name="email"
           required
+          autoComplete="email"
           disabled={sending}
-          className="w-full rounded-xl border border-[#d9cfc6] bg-white px-4 py-3 outline-none ring-[#6d8b72] transition focus:ring-2 disabled:opacity-60"
+          className={fieldClassName}
         />
       </div>
 
       <div className="space-y-2">
-        <label className="block text-sm font-medium text-[#3f4a44]" htmlFor="phone">
+        <label className="block text-sm font-semibold text-[var(--foreground)]" htmlFor="phone">
           Telefonnummer
         </label>
         <input
           id="phone"
           type="tel"
           name="phone"
+          autoComplete="tel"
           disabled={sending}
-          className="w-full rounded-xl border border-[#d9cfc6] bg-white px-4 py-3 outline-none ring-[#6d8b72] transition focus:ring-2 disabled:opacity-60"
+          className={fieldClassName}
         />
       </div>
 
       <div className="space-y-2">
-        <label className="block text-sm font-medium text-[#3f4a44]" htmlFor="message">
+        <label className="block text-sm font-semibold text-[var(--foreground)]" htmlFor="message">
           Meddelande
         </label>
         <textarea
@@ -106,22 +112,18 @@ export function ContactForm() {
           required
           rows={5}
           disabled={sending}
-          className="w-full rounded-xl border border-[#d9cfc6] bg-white px-4 py-3 outline-none ring-[#6d8b72] transition focus:ring-2 disabled:opacity-60"
+          className={fieldClassName}
         />
       </div>
 
       {error ? (
-        <p className="text-sm text-red-700" role="alert">
+        <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-800" role="alert">
           Något gick fel. Kontrollera att NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY finns i
           Netlify och att du deployat om efter det.
         </p>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={sending}
-        className="w-full rounded-xl bg-[#6d8b72] px-5 py-3 font-medium text-white transition hover:bg-[#5a7560] disabled:opacity-60"
-      >
+      <button type="submit" disabled={sending} className="btn-primary w-full disabled:opacity-60">
         {sending ? "Skickar…" : "Skicka förfrågan"}
       </button>
     </form>

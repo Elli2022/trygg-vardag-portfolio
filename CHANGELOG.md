@@ -2,6 +2,19 @@
 
 Alla viktiga ändringar i projektet dokumenteras här enligt [Semantic Versioning](https://semver.org/).
 
+## [2.1.0] - 2026-06-02
+
+### Added
+
+- Mobile navigation, trust highlights, service cards, FAQ section, and area pills
+- English industry README with screenshots and `.env.example`
+- Netlify Next.js plugin configuration and screenshot capture script
+
+### Changed
+
+- Modernized UI tokens, buttons, cards, form styling, and footer navigation
+- Repository naming alignment toward `trygg-vardag-skane-website`
+
 ## [2.0.0] - 2026-05-25
 
 ### Added

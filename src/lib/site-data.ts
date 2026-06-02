@@ -2,8 +2,75 @@ export const navItems = [
   { label: "För vem", href: "#for-vem" },
   { label: "Tjänster", href: "#tjanster" },
   { label: "Aktiviteter", href: "#aktiviteter" },
+  { label: "Vanliga frågor", href: "#faq" },
   { label: "Om oss", href: "#om-oss" },
   { label: "Kontakt", href: "#kontakt" },
+];
+
+export const trustHighlights = [
+  {
+    title: "Personligt",
+    description: "Vi utgår från dina önskemål, tempo och dagsform – inte ett standardskript.",
+  },
+  {
+    title: "Tryggt",
+    description: "Lugnt bemötande, tydlig kommunikation och respektfull närvaro i varje möte.",
+  },
+  {
+    title: "Flexibelt",
+    description: "Hemma, ute eller vid enklare ärenden – vi anpassar aktiviteten efter dig.",
+  },
+  {
+    title: "Skåne",
+    description: "Utgångsort Malmö med uppdrag i hela regionen beroende på dag och behov.",
+  },
+];
+
+export const serviceCards = [
+  {
+    title: "Personligt sällskap",
+    description: "Samtal, gemenskap och närvaro hemma när du vill ha mer liv i vardagen.",
+  },
+  {
+    title: "Ledsagning",
+    description: "Trygg följeslagare till fika, promenad, vårdbesök eller sociala aktiviteter.",
+  },
+  {
+    title: "Vardagsstöd",
+    description: "Enkla sysslor tillsammans – bak, promenad eller planering i ditt tempo.",
+  },
+];
+
+export const serviceAreaCities = [
+  "Malmö",
+  "Lund",
+  "Helsingborg",
+  "Landskrona",
+  "Eslöv",
+  "Trelleborg",
+];
+
+export const faqItems = [
+  {
+    question: "Är ni samma sak som hemtjänst?",
+    answer:
+      "Nej. Vi är ett komplement med fokus på sällskap, ledsagning och meningsfulla aktiviteter – inte medicinsk eller omvårdande hemtjänst.",
+  },
+  {
+    question: "Hur börjar vi?",
+    answer:
+      "Skicka en förfrågan via formuläret. Vi återkommer för ett första samtal och planerar upplägg tillsammans.",
+  },
+  {
+    question: "Var arbetar ni?",
+    answer:
+      "Med utgångspunkt i Malmö tar vi uppdrag i hela Skåne. Tillgänglighet beror på dag och uppdrag.",
+  },
+  {
+    question: "Hur fungerar betalning?",
+    answer:
+      "Fakturering sker månadsvis. RUT-avdrag hanteras i samband med fakturering enligt gällande regler.",
+  },
 ];
 
 export const steps = [

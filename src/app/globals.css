@@ -13,6 +13,8 @@
   --card: #ffffff;
   --muted: #5a6a62;
   --border-warm: #e8ddd6;
+  --shadow-soft: 0 10px 30px rgba(47, 58, 52, 0.06);
+  --shadow-elevated: 0 18px 40px rgba(47, 58, 52, 0.1);
 }
 
 @theme inline {
@@ -55,4 +57,85 @@ body {
     var(--background) 45%,
     var(--background-sage) 100%
   );
+}
+
+.card-surface {
+  border-radius: 1.5rem;
+  border: 1px solid var(--border-warm);
+  background: var(--card);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--accent-green);
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: var(--shadow-soft);
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--accent-green-dark);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--accent-green-dark);
+  outline-offset: 3px;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid var(--border-warm);
+  background: #fff;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  color: var(--foreground);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-pink);
+  background: var(--accent-cream);
+}
+
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--accent-green);
+  outline-offset: 3px;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-fade-up {
+    animation: none;
+  }
 }
